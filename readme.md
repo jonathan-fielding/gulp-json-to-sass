@@ -15,9 +15,13 @@ var gulp = require('gulp');
 var jsonToSass = require('gulp-json-to-sass');
 
 gulp.task('default', function () {
-	return gulp.src('src/scripts/_variables.json')
-		.pipe(jsonToSass())
-		.pipe(gulp.dest('src/sass'));
+	return gulp.src('src/sass/**/*.scss')
+		.pipe(jsonToSass({
+            jsonPath: 'src/scripts/_variables.json',
+            scssPath: 'src/sass/_variables.scss'
+        }))
+        .pipe(sass())
+		.pipe(gulp.dest('dist/css'));
 });
 ```
 

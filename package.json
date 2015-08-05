@@ -1,6 +1,6 @@
 {
   "name": "gulp-json-to-sass",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Gulp plugin which takes the input of JSON and outputs SCSS variables",
   "license": "MIT",
   "repository": "jonathan-fielding/gulp-json-to-sass",
@@ -24,6 +24,7 @@
   "dependencies": {
     "gulp-util": "^3.0.4",
     "json-to-sass": "0.0.1",
+    "lodash": "^3.10.1",
     "through2": "^0.6.5"
   },
   "devDependencies": {

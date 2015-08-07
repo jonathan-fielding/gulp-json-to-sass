@@ -18,19 +18,19 @@ module.exports = function (options) {
 			return;
 		}
 
+
+
 		try {
-			fileStream.readFile(options.jsonPath, 'utf8', _.partial(convertFile, cb, options.scssPath));
+			var jsonData = fileStream.readFileSync(options.jsonPath);
+			var scss = jsonToSass(jsonData);
+
+			fileStream.writeFileSync(options.scssPath, scss);
+
+			this.push(file);
 		} catch (err) {
-			this.emit('error', new gutil.PluginError('gulp-json-to-sass', err));
-			cb();
+			this.emit('error', new gutil.PluginError('gulp-temp', err));
 		}
-	});
-};
 
-function convertFile (cb, outputLocation, error, data) {
-	var scss = jsonToSass(data);
-
-	fileStream.writeFile(outputLocation, scss, 'utf8', function (error) {
 		cb();
 	});
-}
+};
